@@ -1,0 +1,5 @@
+**/venv
+sitemap.txt
+.vscode
+**__pycache__
+**tempCodeRunner.py
