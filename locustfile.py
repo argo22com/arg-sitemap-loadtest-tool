@@ -28,9 +28,9 @@ class StepLoadShape(LoadTestShape):
         time_limit -- Time limit in seconds
     """
 
-    step_time = 6
-    step_load = 100
-    spawn_rate = 100
+    step_time = 60
+    step_load = 10
+    spawn_rate = 1
     time_limit = 86400 # 24h
 
     def tick(self):
