@@ -2,25 +2,16 @@ import math
 from pathlib import Path
 from locust import LoadTestShape, between, task
 from locust.contrib.fasthttp import FastHttpUser
-from random import shuffle
+import random
 
 testing_urls = Path('sitemap.txt').read_text().splitlines()
 
 
 class WebUser(FastHttpUser):
-    urls = testing_urls
-    shuffle(urls)
-    last_index = 0
-
-    def get_random_url(self):
-        if self.last_index >= len(self.urls):
-            self.last_index = 0
-        return self.urls[self.last_index]
 
     @task
     def load_test(self):
-        url = self.get_random_url()
-        self.last_index += 1
+        url = random.choice(testing_urls)
         self.client.get(url)
 
 
