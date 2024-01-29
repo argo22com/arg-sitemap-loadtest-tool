@@ -8,13 +8,20 @@ testing_urls = Path('sitemap.txt').read_text().splitlines()
 
 
 class WebUser(FastHttpUser):
+    urls = testing_urls
+    shuffle(urls)
+    last_index = 0
+
+    def get_random_url(self):
+        if self.last_index >= len(self.urls):
+            self.last_index = 0
+        return self.urls[self.last_index]
 
     @task
     def load_test(self):
-        urls = list(testing_urls)
-        shuffle(urls)
-        for url in urls:
-            self.client.get(url)
+        url = self.get_random_url()
+        self.last_index += 1
+        self.client.get(url)
 
 
 # You can define custom load shape
