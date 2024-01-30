@@ -4,7 +4,7 @@ import sys
 # load and validate arguments
 url = sys.argv[1] if len(sys.argv) > 1 else None
 
-if not url or url.startswith('http'):
+if not url or not url.startswith('http'):
     print('ERR: Provide a valid url')
     print('Example: python sitemap_download.py https://www.example.com')
     sys.exit(1)
