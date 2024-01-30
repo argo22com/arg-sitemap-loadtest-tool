@@ -1,0 +1,3 @@
+
+test:
+	locust --modern-ui
