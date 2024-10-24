@@ -1,3 +1,3 @@
 
 test:
-	locust --modern-ui
+	locust
